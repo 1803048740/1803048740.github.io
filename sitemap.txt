@@ -1,4 +1,9 @@
-http://example.com/2022/08/25/hello-world/
-http://example.com/2022/08/25/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/1.%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%B1%95%E7%A4%BA/
-http://example.com/2022/08/25/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/0.%E5%A4%A9%E9%A9%AC%E8%A1%8C%E7%A9%BA/
-http://example.com/
+https://1803048740.github.io/2022/08/25/hello-world/
+https://1803048740.github.io/2022/08/25/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/1.%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%B1%95%E7%A4%BA/
+https://1803048740.github.io/2022/08/25/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/0.%E5%A4%A9%E9%A9%AC%E8%A1%8C%E7%A9%BA/
+https://1803048740.github.io/2022/08/25/4.%E8%BF%9B%E9%98%B6%E6%9F%A5%E8%AF%A2/
+https://1803048740.github.io/link.json
+https://1803048740.github.io/link/index.html
+https://1803048740.github.io/categories/index.html
+https://1803048740.github.io/tags/index.html
+https://1803048740.github.io/
