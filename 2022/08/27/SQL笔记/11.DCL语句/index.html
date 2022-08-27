@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>DCL语句 | BestDream</title><meta name="keywords" content="DCL"><meta name="author" content="脱缰的幻想"><meta name="copyright" content="脱缰的幻想"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DCL语句1.创建用户 USER语法：CREATE USER 用户名 IDENTIFIED BY 密码; 1CREATE USER SCOTT IDENTIFIED BY SCOTT;  –如果权限不足会报错，显示权限不足，需要赋予权限。 sys&#x2F;sys  system&#x2F;system 两个管理员账号密码 –无法直接登录，需要修改’连接为‘成SYSDBA 2.赋权（赋予权限） G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DCL语句">
+<meta property="og:url" content="https://blog.bestdream.website/2022/08/27/SQL%E7%AC%94%E8%AE%B0/11.DCL%E8%AF%AD%E5%8F%A5/index.html">
+<meta property="og:site_name" content="BestDream">
+<meta property="og:description" content="DCL语句1.创建用户 USER语法：CREATE USER 用户名 IDENTIFIED BY 密码; 1CREATE USER SCOTT IDENTIFIED BY SCOTT;  –如果权限不足会报错，显示权限不足，需要赋予权限。 sys&#x2F;sys  system&#x2F;system 两个管理员账号密码 –无法直接登录，需要修改’连接为‘成SYSDBA 2.赋权（赋予权限） G">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva3.sinaimg.cn/large/0072Vf1pgy1foxkipc63ij31hc0u0wv2.jpg">
+<meta property="article:published_time" content="2022-08-27T02:34:22.405Z">
+<meta property="article:modified_time" content="2022-08-27T02:34:22.405Z">
+<meta property="article:author" content="脱缰的幻想">
+<meta property="article:tag" content="DCL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva3.sinaimg.cn/large/0072Vf1pgy1foxkipc63ij31hc0u0wv2.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.bestdream.website/2022/08/27/SQL%E7%AC%94%E8%AE%B0/11.DCL%E8%AF%AD%E5%8F%A5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'DCL语句',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-27 10:34:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style type="text/css">#toggle-sidebar {bottom: 80px}</style><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="BestDream" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva3.sinaimg.cn/large/0072Vf1pgy1foxkipc63ij31hc0u0wv2.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">BestDream</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">DCL语句</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-27T02:34:22.405Z" title="发表于 2022-08-27 10:34:22">2022-08-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-27T02:34:22.405Z" title="更新于 2022-08-27 10:34:22">2022-08-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ETL%E5%B7%A5%E7%A8%8B%E5%B8%88/">ETL工程师</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ETL%E5%B7%A5%E7%A8%8B%E5%B8%88/SQL%E5%9F%BA%E7%A1%80/">SQL基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="DCL语句"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="DCL语句"><a href="#DCL语句" class="headerlink" title="DCL语句"></a>DCL语句</h1><h2 id="1-创建用户-USER"><a href="#1-创建用户-USER" class="headerlink" title="1.创建用户 USER"></a>1.创建用户 USER</h2><p>语法：<code>CREATE</code> <code>USER</code> 用户名 <code>IDENTIFIED</code> <code>BY</code> 密码;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> SCOTT IDENTIFIED <span class="keyword">BY</span> SCOTT;</span><br></pre></td></tr></table></figure>
+
+<p>–如果权限不足会报错，显示权限不足，需要赋予权限。</p>
+<p><code>sys</code>&#x2F;<code>sys</code>  <code>system</code>&#x2F;<code>system</code> 两个管理员账号密码</p>
+<p>–无法直接登录，需要修改’连接为‘成<code>SYSDBA</code></p>
+<h2 id="2-赋权（赋予权限）-GRANT"><a href="#2-赋权（赋予权限）-GRANT" class="headerlink" title="2.赋权（赋予权限） GRANT"></a>2.赋权（赋予权限） GRANT</h2><p>语法：<code>GRANT</code> <code>CREATE</code> <code>SESSION</code> TO 用户名;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">CREATE</span> SESSION <span class="keyword">TO</span> YAOTIAN;</span><br></pre></td></tr></table></figure>
+
+<p>–新建的用户没有表，也不能创建表</p>
+<h3 id="2-2-给用户添加基础连接角色-CONNECT-和基础资源角色-RESOURCE"><a href="#2-2-给用户添加基础连接角色-CONNECT-和基础资源角色-RESOURCE" class="headerlink" title="2.2 给用户添加基础连接角色 CONNECT 和基础资源角色 RESOURCE"></a>2.2 给用户添加基础连接角色 CONNECT 和基础资源角色 RESOURCE</h3><p><code>CONNECT</code> 能够使用户连接到数据库中，并对其他用户的标有访问权限时，做增删改操作<br><code>RESOURCE</code> 能让用户在自己的窗口中创建表等内容<br>语法：<code>GRANT</code> <code>CONNECT</code>,<code>RESOURCE</code> <code>TO</code> 用户名;<br>–权限是可以多个一起给的</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">CONNECT</span>,RESOURCE <span class="keyword">TO</span> YAOTIAN;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> EMP(EMPNO NUMBER(<span class="number">4</span>));</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> EMP;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-给用户赋予查询某张表的权限"><a href="#2-3-给用户赋予查询某张表的权限" class="headerlink" title="2.3 给用户赋予查询某张表的权限"></a>2.3 给用户赋予查询某张表的权限</h3><p>语法：<code>GRANT</code> <code>SELECT</code> <code>ON</code> 用户名.表名 <code>TO</code> 用户名;<br>–前一个用户名为表的所属人，后一个用户名为被赋予查看这张表的人</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> SCOTT.EMP <span class="keyword">TO</span> YAOTIAN;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> SCOTT.EMP;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-赋予用户管理员权限"><a href="#2-4-赋予用户管理员权限" class="headerlink" title="2.4 赋予用户管理员权限"></a>2.4 赋予用户管理员权限</h3><p>语法：<code>GRANT</code> <code>DBA</code> TO 用户名;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> DBA <span class="keyword">TO</span> YAOTIAN;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> A;<span class="comment">--还是查看</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> SCOTT.A;<span class="comment">--这个才能查看</span></span><br></pre></td></tr></table></figure>
+
+<p>我现在在YAOTIAN用户下创建了一个CLASS_37的表，请问怎么在SCOTT用户下查看?<br>1.赋予管理员权限<br>2.赋予查看这张表的权限</p>
+<h2 id="3-收回权限-REVOKE"><a href="#3-收回权限-REVOKE" class="headerlink" title="3.收回权限 REVOKE"></a>3.收回权限 REVOKE</h2><p>语法：<code>REVOKE</code> 权限 FROM 用户名;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> DBA <span class="keyword">FROM</span> YAOTIAN;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> SCOTT.A;<span class="comment">--会有一点点的滞后，新开窗口以后就不能运行了</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> 用户名.表名 <span class="keyword">TO</span> 用户名;</span><br><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> 用户名.表名 <span class="keyword">FROM</span> 用户名;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>GRANT SELECT ON 用户名.表名 TO 用户名;</code> 给某个用户赋予其他用户下表的查看权限</p>
+</blockquote>
+<h2 id="4-锁定-x2F-解锁用户-LOCK-x2F-UNLOCK"><a href="#4-锁定-x2F-解锁用户-LOCK-x2F-UNLOCK" class="headerlink" title="4.锁定&#x2F;解锁用户 LOCK&#x2F;UNLOCK"></a>4.锁定&#x2F;解锁用户 LOCK&#x2F;UNLOCK</h2><p>语法：<code>ALTER</code> <code>USER</code>  用户名 <code>ACCOUNT</code> <code>LOCK</code>;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span>  用户名 ACCOUNT UNLOCK;</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> YAOTIAN ACCOUNT LOCK;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> EMP;</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> YAOTIAN ACCOUNT UNLOCK;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>–1.可以在自己的用户下锁定自己，退出后无法登录<br>–2.锁定的用户在没有解锁之前无法登录</p>
+<h2 id="5-修改密码"><a href="#5-修改密码" class="headerlink" title="5.修改密码"></a>5.修改密码</h2><p>创建用户的语法：<code>CREATE</code> <code>USER</code> 用户名 <code>IDENTIFIED</code> BY 密码;<br>修改密码的语法：<code>ALTER</code>  <code>USER</code> 用户名 <code>IDENTIFIED</code> <code>BY</code> 新密码;</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> YAOTIAN IDENTIFIED <span class="keyword">BY</span> yaotian;</span><br></pre></td></tr></table></figure>
+
+<p>–密码是严格区分大小写的，用户名不区分</p>
+<h2 id="6-删除用户"><a href="#6-删除用户" class="headerlink" title="6.删除用户"></a>6.删除用户</h2><p>语法：<code>DROP</code> <code>USER</code> 用户名;–删除用户，但是里面有权限、表、视图等内容都不能用这个删除</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">USER</span> YAOTIAN CASCADE;<span class="comment">--权限不足</span></span><br></pre></td></tr></table></figure>
+
+<p>–CASCADE需要在超级管理员的用户下进行<br>–1.自己无法删除自己<br>–2.如果赋权了，得先收回权限再删除用户，要不然无法删除用户<br>–3.如果硬要删除，在用户名后加上CASCADE即可</p>
+<p>&#x3D;&#x3D;GRANT DBA TO YAOTIAN;&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;DROP USER YAOTIAN CASCADE;&#x3D;&#x3D;</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.bestdream.website">脱缰的幻想</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.bestdream.website/2022/08/27/SQL%E7%AC%94%E8%AE%B0/11.DCL%E8%AF%AD%E5%8F%A5/">https://blog.bestdream.website/2022/08/27/SQL%E7%AC%94%E8%AE%B0/11.DCL%E8%AF%AD%E5%8F%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.bestdream.website" target="_blank">BestDream</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/DCL/">DCL</a></div><div class="post_share"><div class="social-share" data-image="https://tva3.sinaimg.cn/large/0072Vf1pgy1foxkipc63ij31hc0u0wv2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/08/27/SQL%E7%AC%94%E8%AE%B0/13.%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/"><img class="prev-cover" src="https://img.paulzzh.com/touhou/konachan/image/7ab295f7574ff8a42cae4d182257dfa8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">窗口函数</div></div></a></div><div class="next-post pull-right"><a href="/2022/08/27/SQL%E7%AC%94%E8%AE%B0/10.%E7%BA%A6%E6%9D%9F/"><img class="next-cover" src="https://tva1.sinaimg.cn/large/87c01ec7gy1frmrtnq32hj21hc0u0wnl.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">约束</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脱缰的幻想</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/1803048740"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/1803048740" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1803048740@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DCL%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.</span> <span class="toc-text">DCL语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7-USER"><span class="toc-number">1.1.</span> <span class="toc-text">1.创建用户 USER</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%B5%8B%E6%9D%83%EF%BC%88%E8%B5%8B%E4%BA%88%E6%9D%83%E9%99%90%EF%BC%89-GRANT"><span class="toc-number">1.2.</span> <span class="toc-text">2.赋权（赋予权限） GRANT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%BB%99%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0%E5%9F%BA%E7%A1%80%E8%BF%9E%E6%8E%A5%E8%A7%92%E8%89%B2-CONNECT-%E5%92%8C%E5%9F%BA%E7%A1%80%E8%B5%84%E6%BA%90%E8%A7%92%E8%89%B2-RESOURCE"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.2 给用户添加基础连接角色 CONNECT 和基础资源角色 RESOURCE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E7%BB%99%E7%94%A8%E6%88%B7%E8%B5%8B%E4%BA%88%E6%9F%A5%E8%AF%A2%E6%9F%90%E5%BC%A0%E8%A1%A8%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.3 给用户赋予查询某张表的权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E8%B5%8B%E4%BA%88%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.4 赋予用户管理员权限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%94%B6%E5%9B%9E%E6%9D%83%E9%99%90-REVOKE"><span class="toc-number">1.3.</span> <span class="toc-text">3.收回权限 REVOKE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%94%81%E5%AE%9A-x2F-%E8%A7%A3%E9%94%81%E7%94%A8%E6%88%B7-LOCK-x2F-UNLOCK"><span class="toc-number">1.4.</span> <span class="toc-text">4.锁定&#x2F;解锁用户 LOCK&#x2F;UNLOCK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-number">1.5.</span> <span class="toc-text">5.修改密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="toc-number">1.6.</span> <span class="toc-text">6.删除用户</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/27/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/0.%E5%A4%A9%E9%A9%AC%E8%A1%8C%E7%A9%BA/" title="天马行空"><img src="https://img.paulzzh.com/touhou/konachan/image/7ab295f7574ff8a42cae4d182257dfa8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="天马行空"/></a><div class="content"><a class="title" href="/2022/08/27/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/0.%E5%A4%A9%E9%A9%AC%E8%A1%8C%E7%A9%BA/" title="天马行空">天马行空</a><time datetime="2022-08-27T02:34:22.436Z" title="发表于 2022-08-27 10:34:22">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/27/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/1.%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%B1%95%E7%A4%BA/" title="知识管理展示"><img src="https://tva4.sinaimg.cn/large/87c01ec7gy1frmmmaptjmj21hc0u0npf.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="知识管理展示"/></a><div class="content"><a class="title" href="/2022/08/27/%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/1.%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%B1%95%E7%A4%BA/" title="知识管理展示">知识管理展示</a><time datetime="2022-08-27T02:34:22.436Z" title="发表于 2022-08-27 10:34:22">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/27/hello-world/" title="Hello World"><img src="https://tva1.sinaimg.cn/large/87c01ec7gy1frmmodoqiej21hc0u0x6q.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2022/08/27/hello-world/" title="Hello World">Hello World</a><time datetime="2022-08-27T02:34:22.434Z" title="发表于 2022-08-27 10:34:22">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/27/SQL%E7%AC%94%E8%AE%B0/%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86/" title="补充知识"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="补充知识"/></a><div class="content"><a class="title" href="/2022/08/27/SQL%E7%AC%94%E8%AE%B0/%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86/" title="补充知识">补充知识</a><time datetime="2022-08-27T02:34:22.434Z" title="发表于 2022-08-27 10:34:22">2022-08-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/27/SQL%E7%AC%94%E8%AE%B0/%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" title="命名规范"><img src="https://tva1.sinaimg.cn/large/87c01ec7gy1frmrtnq32hj21hc0u0wnl.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="命名规范"/></a><div class="content"><a class="title" href="/2022/08/27/SQL%E7%AC%94%E8%AE%B0/%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" title="命名规范">命名规范</a><time datetime="2022-08-27T02:34:22.432Z" title="发表于 2022-08-27 10:34:22">2022-08-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By 脱缰的幻想</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="7608648639" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-lrctype="1" data-preload="none" data-autoplay="true" muted></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
