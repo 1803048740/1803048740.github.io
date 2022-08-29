@@ -124,11 +124,11 @@ live2d:
     use: live2d-widget-model-koharu # npm-module package name
     # use: https://unpkg.com/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json # 你的自定义 url
   display:
-    position: left #控制看板娘位置
+    position: right #控制看板娘位置
     width: 150 #控制看板娘大小
     height: 300 #控制看板娘大小
   mobile:
-    show: false # 手机中是否展示
+    show: false # 手机中是否展示追番
 
 # https://github.com/hexojs/hexo-generator-sitemap
 sitemap:
@@ -160,7 +160,7 @@ plugins:
 bangumi: # 追番设置
   enable: true
   path:
-  vmid: 372204786
+  vmid: 87976817
   title: '追番列表'
   quote: '生命不息，追番不止！'
   show: 1
@@ -175,11 +175,11 @@ bangumi: # 追番设置
 cinema: # 追剧设置
   enable: false
   path:
-  vmid: 372204786
+  vmid: 87976817
   title: '追剧列表'
   quote: '生命不息，追剧不止！'
   show: 1
-  lazyload: true
+  lazyload: false
   loading:
   metaColor:
   color:
@@ -188,10 +188,26 @@ cinema: # 追剧设置
   extra_options:
     key: value
 
-# 百度主动推送
-# https://github.com/huiwang/hexo-baidu-url-submit
-baidu_url_submit:
-  count: 1        # 提交最新的多少个链接
-  host: blog.anzhiy.cn  # 在百度站长平台中添加的域名
-  token: Rgem9kAECSLflQq6   # 秘钥
-  path: baidu_urls.txt   # 文本文档的地址， 新链接会保存在此文本文档里
+
+# envelope_comment
+# see https://akilar.top/posts/e2d3c450/
+# envelope_comment
+# see https://akilar.top/posts/e2d3c450/
+envelope_comment:
+  enable: true #控制开关
+  custom_pic:
+    cover: https://cdn.cbd.int//hexo-butterfly-envelope/lib/violet.jpg #信笺头部图片
+    line: https://cdn.cbd.int/hexo-butterfly-envelope/lib/line.png #信笺底部图片
+    beforeimg: https://cdn.cbd.int/hexo-butterfly-envelope/lib/before.png # 信封前半部分
+    afterimg: https://cdn.cbd.int/hexo-butterfly-envelope/lib/after.png # 信封后半部分
+  message: #信笺正文，多行文本，写法如下
+    - 有什么想问的？
+    - 有什么想说的？
+    - 有什么想吐槽的？
+    - 哪怕是有什么想吃的，都可以告诉我哦~
+  bottom: 自动书记人偶竭诚为您服务！ #仅支持单行文本
+  height: #1050px，信封划出的高度
+  path: #【可选】comments 的路径名称。默认为 comments，生成的页面为 comments/index.html
+  front_matter: #【可选】comments页面的 front_matter 配置
+    title: 留言板
+    comments: true
