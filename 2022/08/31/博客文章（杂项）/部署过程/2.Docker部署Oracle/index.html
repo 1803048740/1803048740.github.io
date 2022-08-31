@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Docker部署Oracle | BestDream</title><meta name="keywords" content="oracle"><meta name="author" content="脱缰的幻想"><meta name="copyright" content="脱缰的幻想"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.docker search oracle 查找oracle1docker pull registry.cn-hangzhou.aliyuncs.com&#x2F;helowin&#x2F;oracle_11g  创建本地数据映射目录 1mkdir -p -m 755 &#x2F;Users&#x2F;lin&#x2F;Projects&#x2F;data&#x2F;oracle_home&#x2F;oracle_data&#x2F;&amp;#123;app,dpdump,oraInven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker部署Oracle">
+<meta property="og:url" content="https://blog.bestdream.website/2022/08/31/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%EF%BC%88%E6%9D%82%E9%A1%B9%EF%BC%89/%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/2.Docker%E9%83%A8%E7%BD%B2Oracle/index.html">
+<meta property="og:site_name" content="BestDream">
+<meta property="og:description" content="1.docker search oracle 查找oracle1docker pull registry.cn-hangzhou.aliyuncs.com&#x2F;helowin&#x2F;oracle_11g  创建本地数据映射目录 1mkdir -p -m 755 &#x2F;Users&#x2F;lin&#x2F;Projects&#x2F;data&#x2F;oracle_home&#x2F;oracle_data&#x2F;&amp;#123;app,dpdump,oraInven">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva4.sinaimg.cn/large/87c01ec7gy1frmmmaptjmj21hc0u0npf.jpg">
+<meta property="article:published_time" content="2022-08-31T09:11:12.921Z">
+<meta property="article:modified_time" content="2022-08-31T09:02:15.740Z">
+<meta property="article:author" content="脱缰的幻想">
+<meta property="article:tag" content="oracle">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva4.sinaimg.cn/large/87c01ec7gy1frmmmaptjmj21hc0u0npf.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.bestdream.website/2022/08/31/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%EF%BC%88%E6%9D%82%E9%A1%B9%EF%BC%89/%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/2.Docker%E9%83%A8%E7%BD%B2Oracle/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker部署Oracle',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-31 17:02:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><style type="text/css">#toggle-sidebar {bottom: 80px}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.0.5/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="BestDream" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">69</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电源</span></a></li><li><a class="site-page child" href="/bangumis/index.html"><i class="fa-fw fas fa-home"></i><span> 追番</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tva4.sinaimg.cn/large/87c01ec7gy1frmmmaptjmj21hc0u0npf.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">BestDream</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电源</span></a></li><li><a class="site-page child" href="/bangumis/index.html"><i class="fa-fw fas fa-home"></i><span> 追番</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Docker部署Oracle</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-31T09:11:12.921Z" title="发表于 2022-08-31 17:11:12">2022-08-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-31T09:02:15.740Z" title="更新于 2022-08-31 17:02:15">2022-08-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/">部署过程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Docker部署Oracle"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-docker-search-oracle-查找oracle"><a href="#1-docker-search-oracle-查找oracle" class="headerlink" title="1.docker search oracle 查找oracle"></a>1.docker search oracle 查找oracle</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建本地数据映射目录</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p -m 755 /Users/lin/Projects/data/oracle_home/oracle_data/&#123;app,dpdump,oraInventory&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-然后把它跑起来"><a href="#2-然后把它跑起来" class="headerlink" title="2.然后把它跑起来"></a>2.然后把它跑起来</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 1521:1521 --name oracle_11g   -v  /Users/lin/Projects/data/oracle_home/oracle_data/app:/opt/oracle/app     -v  /Users/lin/Projects/data/oracle_home/oracle_data/dpdump:/opt/oracle/dpdump  -v  /Users/lin/Projects/data/oracle_home/oracle_data/oraInventory:/opt/oracle/oraInventory   registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-接着进入容器里"><a href="#3-接着进入容器里" class="headerlink" title="3.接着进入容器里"></a>3.接着进入容器里</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker exec -it oracle_11g bash</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-这个时候sqlplus命令-是不可以用的，需要配置一下环境变量，输入密码helowin"><a href="#4-这个时候sqlplus命令-是不可以用的，需要配置一下环境变量，输入密码helowin" class="headerlink" title="4.这个时候sqlplus命令 是不可以用的，需要配置一下环境变量，输入密码helowin"></a>4.这个时候sqlplus命令 是不可以用的，需要配置一下环境变量，输入密码helowin</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[oracle@9e98c99229c8 /]$ su root</span><br><span class="line">Password: </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-vi-etc-profile-并在文件最后添加如下命令"><a href="#5-vi-etc-profile-并在文件最后添加如下命令" class="headerlink" title="5.vi /etc/profile 并在文件最后添加如下命令"></a>5.<code>vi /etc/profile</code> 并在文件最后添加如下命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_2</span><br><span class="line"></span><br><span class="line">export ORACLE_SID=helowin</span><br><span class="line"></span><br><span class="line">export PATH=$ORACLE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-使变量生效，接着切换为-oracle用户就可以正常使用了"><a href="#6-使变量生效，接着切换为-oracle用户就可以正常使用了" class="headerlink" title="6.使变量生效，接着切换为 oracle用户就可以正常使用了"></a>6.使变量生效，接着切换为 oracle用户就可以正常使用了</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br><span class="line">[root@9e98c99229c8 /]# vi /etc/profile</span><br><span class="line">[root@9e98c99229c8 /]# ln -s $ORACLE_HOME/bin/sqlplus /usr/bin</span><br><span class="line">[root@9e98c99229c8 /]# su - oracle</span><br><span class="line">[oracle@9e98c99229c8 ~]$ sqlplus /nolog</span><br><span class="line">SQL*Plus: Release 11.2.0.1.0 Production on Tue Apr 16 17:08:25 2019</span><br><span class="line"></span><br><span class="line">Copyright (c) 1982, 2009, Oracle.  All rights reserved.</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7-登录sqlplus并修改sys、system用户密码"><a href="#7-登录sqlplus并修改sys、system用户密码" class="headerlink" title="7.登录sqlplus并修改sys、system用户密码"></a>7.登录sqlplus并修改sys、system用户密码</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sqlplus /nolog</span><br><span class="line"></span><br><span class="line">conn /as sysdba</span><br><span class="line"></span><br><span class="line">接着执行下面命令</span><br><span class="line"></span><br><span class="line">alter user system identified by oracle;</span><br><span class="line"></span><br><span class="line">alter user sys identified by oracle;</span><br><span class="line"></span><br><span class="line">ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;</span><br><span class="line"></span><br><span class="line">exit 退出。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8-查看一下oracle实例状态"><a href="#8-查看一下oracle实例状态" class="headerlink" title="8.查看一下oracle实例状态"></a>8.查看一下oracle实例状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsnrctl status</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="9-连接测试一把-服务名要填写helowin-密码-oracle-大功告成"><a href="#9-连接测试一把-服务名要填写helowin-密码-oracle-大功告成" class="headerlink" title="9.连接测试一把,服务名要填写helowin.   密码:oracle  大功告成"></a>9.连接测试一把,服务名要填写helowin.   密码:oracle  大功告成</h2><h2 id="10-提交修改下次直接启动这个容器即可"><a href="#10-提交修改下次直接启动这个容器即可" class="headerlink" title="10.提交修改下次直接启动这个容器即可"></a>10.提交修改下次直接启动这个容器即可</h2><p>docker commit 容器名称或ID 新的镜像名称:版本</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.bestdream.website">脱缰的幻想</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.bestdream.website/2022/08/31/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%EF%BC%88%E6%9D%82%E9%A1%B9%EF%BC%89/%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/2.Docker%E9%83%A8%E7%BD%B2Oracle/">https://blog.bestdream.website/2022/08/31/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%EF%BC%88%E6%9D%82%E9%A1%B9%EF%BC%89/%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/2.Docker%E9%83%A8%E7%BD%B2Oracle/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.bestdream.website" target="_blank">BestDream</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/oracle/">oracle</a></div><div class="post_share"><div class="social-share" data-image="https://tva4.sinaimg.cn/large/87c01ec7gy1frmmmaptjmj21hc0u0npf.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/08/31/%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0/Arduino%20UNO/%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/%E5%88%9D%E8%AF%86Arduino/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">初识Arduino</div></div></a></div><div class="next-post pull-right"><a href="/2022/08/31/%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%EF%BC%88%E6%9D%82%E9%A1%B9%EF%BC%89/%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/1.DBapi%E9%83%A8%E7%BD%B2/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.paulzzh.com/touhou/konachan/image/7ab295f7574ff8a42cae4d182257dfa8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">DBapi部署</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">脱缰的幻想</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">70</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">69</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/1803048740"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/1803048740" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1803048740@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-docker-search-oracle-%E6%9F%A5%E6%89%BEoracle"><span class="toc-number">1.</span> <span class="toc-text">1.docker search oracle 查找oracle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%84%B6%E5%90%8E%E6%8A%8A%E5%AE%83%E8%B7%91%E8%B5%B7%E6%9D%A5"><span class="toc-number">2.</span> <span class="toc-text">2.然后把它跑起来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%8E%A5%E7%9D%80%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8%E9%87%8C"><span class="toc-number">3.</span> <span class="toc-text">3.接着进入容器里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%BF%99%E4%B8%AA%E6%97%B6%E5%80%99sqlplus%E5%91%BD%E4%BB%A4-%E6%98%AF%E4%B8%8D%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%9A%84%EF%BC%8C%E9%9C%80%E8%A6%81%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%8C%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81helowin"><span class="toc-number">4.</span> <span class="toc-text">4.这个时候sqlplus命令 是不可以用的，需要配置一下环境变量，输入密码helowin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-vi-etc-profile-%E5%B9%B6%E5%9C%A8%E6%96%87%E4%BB%B6%E6%9C%80%E5%90%8E%E6%B7%BB%E5%8A%A0%E5%A6%82%E4%B8%8B%E5%91%BD%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">5.vi &#x2F;etc&#x2F;profile 并在文件最后添加如下命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E4%BD%BF%E5%8F%98%E9%87%8F%E7%94%9F%E6%95%88%EF%BC%8C%E6%8E%A5%E7%9D%80%E5%88%87%E6%8D%A2%E4%B8%BA-oracle%E7%94%A8%E6%88%B7%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8%E4%BA%86"><span class="toc-number">6.</span> <span class="toc-text">6.使变量生效，接着切换为 oracle用户就可以正常使用了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%99%BB%E5%BD%95sqlplus%E5%B9%B6%E4%BF%AE%E6%94%B9sys%E3%80%81system%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81"><span class="toc-number">7.</span> <span class="toc-text">7.登录sqlplus并修改sys、system用户密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%9F%A5%E7%9C%8B%E4%B8%80%E4%B8%8Boracle%E5%AE%9E%E4%BE%8B%E7%8A%B6%E6%80%81"><span class="toc-number">8.</span> <span class="toc-text">8.查看一下oracle实例状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E8%BF%9E%E6%8E%A5%E6%B5%8B%E8%AF%95%E4%B8%80%E6%8A%8A-%E6%9C%8D%E5%8A%A1%E5%90%8D%E8%A6%81%E5%A1%AB%E5%86%99helowin-%E5%AF%86%E7%A0%81-oracle-%E5%A4%A7%E5%8A%9F%E5%91%8A%E6%88%90"><span class="toc-number">9.</span> <span class="toc-text">9.连接测试一把,服务名要填写helowin.   密码:oracle  大功告成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%8F%90%E4%BA%A4%E4%BF%AE%E6%94%B9%E4%B8%8B%E6%AC%A1%E7%9B%B4%E6%8E%A5%E5%90%AF%E5%8A%A8%E8%BF%99%E4%B8%AA%E5%AE%B9%E5%99%A8%E5%8D%B3%E5%8F%AF"><span class="toc-number">10.</span> <span class="toc-text">10.提交修改下次直接启动这个容器即可</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/31/1.%E9%AA%81%E9%BE%99410%E9%9A%8F%E8%BA%ABWifi/" title="骁龙410随身WiFi"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tva2.sinaimg.cn/large/0060lm7Tly1ftg6xhyidxj31hc0u0x6p.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="骁龙410随身WiFi"/></a><div class="content"><a class="title" href="/2022/08/31/1.%E9%AA%81%E9%BE%99410%E9%9A%8F%E8%BA%ABWifi/" title="骁龙410随身WiFi">骁龙410随身WiFi</a><time datetime="2022-08-31T09:11:35.289Z" title="发表于 2022-08-31 17:11:35">2022-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/31/%E5%B0%8F%E6%96%B0padpro2021%E5%88%B7%E6%9C%BA/" title="小新padpro2021刷机"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小新padpro2021刷机"/></a><div class="content"><a class="title" href="/2022/08/31/%E5%B0%8F%E6%96%B0padpro2021%E5%88%B7%E6%9C%BA/" title="小新padpro2021刷机">小新padpro2021刷机</a><time datetime="2022-08-31T09:11:29.834Z" title="发表于 2022-08-31 17:11:29">2022-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/31/C%E8%AF%AD%E8%A8%80/%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/C%E8%AF%AD%E6%B3%95/" title="C语法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tva2.sinaimg.cn/large/0060lm7Tly1ftg6xhyidxj31hc0u0x6p.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C语法"/></a><div class="content"><a class="title" href="/2022/08/31/C%E8%AF%AD%E8%A8%80/%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/C%E8%AF%AD%E6%B3%95/" title="C语法">C语法</a><time datetime="2022-08-31T09:11:18.800Z" title="发表于 2022-08-31 17:11:18">2022-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE/" title="树莓派EspHome安装"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="树莓派EspHome安装"/></a><div class="content"><a class="title" href="/2022/08/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE/" title="树莓派EspHome安装">树莓派EspHome安装</a><time datetime="2022-08-31T09:11:16.146Z" title="发表于 2022-08-31 17:11:16">2022-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/31/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/React/React%E4%B8%8A%E6%89%8B/" title="React"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React"/></a><div class="content"><a class="title" href="/2022/08/31/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/React/React%E4%B8%8A%E6%89%8B/" title="React">React</a><time datetime="2022-08-31T09:11:16.131Z" title="发表于 2022-08-31 17:11:16">2022-08-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By 脱缰的幻想</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="7608648639" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-lrctype="1" data-preload="none" data-autoplay="true" muted></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.0.5/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu@1.0.5/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
